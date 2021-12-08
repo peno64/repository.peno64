@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="repository.peno64" name="peno64 repository" version="1.0" provider-name="peno64">
+<addons><addon id="repository.peno64" name="peno64 repository" version="1.1" provider-name="peno64">
     <extension point="xbmc.addon.repository" name="peno64 repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/peno64/repository.peno64/master/repo/zips/addons.xml</info>
@@ -34,6 +34,54 @@
     			<fanart>fanart.png</fanart>
   		</assets>
         </extension>
+</addon><addon id="script.ezmaintenanceplus" name="EZ Maintenance+" version="2021.11.03.0" provider-name="aenema, peno">
+  <requires>
+    <import addon="script.module.requests" version="1.0.0" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+     <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup" />
+  <extension point="xbmc.addon.metadata">
+	<summary>A Streamlined Utility Tool for Kodi</summary>
+	<description>No Bloatware, no Nonsense! Just Keep your Kodi sharp and clean with this utility tool... Now with a Custom Wizard.</description>
+    <language />
+    <platform>all</platform>
+    <license>The MIT License</license>
+    <forum>-</forum>
+    <source>https://github.com</source>
+    <assets>
+	    <icon>icon.png</icon>
+	    <fanart>fanart.png</fanart>
+    </assets>
+  </extension>
+</addon><addon id="script.realdebrid" name="RealDebrid" version="0.6" provider-name="ptom, peno">
+    <requires>
+        <import addon="script.module.requests" version="2.3.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+	<provides>executable</provides>
+    </extension>
+    <extension point="kodi.context.item">
+        <menu id="kodi.core.main">
+          <item library="addon.py">
+            <label>Play using RealDebrid</label>
+            <visible>Container.Content(episodes) | Container.Content(movies)</visible>
+          </item>
+        </menu>
+    </extension>
+    <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.addon.metadata">
+	<description lang="en">Unofficial RealDebrid client. Manage your torrents, unrestricted links and view host statuses all within Kodi.</description>
+        <summary>Unofficial RealDebrid client. Manage your torrents, unrestricted links and view host statuses all within Kodi.</summary>
+        <news>v0.6 - Made it Matrix complient + several fixes</news>
+	<platform>all</platform>
+	<language>en</language>
+        <assets>
+    		<icon>icon.png</icon>
+    		<fanart>fanart.png</fanart>
+        </assets>
+    </extension>
 </addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.5.0" provider-name="peno">
   <requires>
   </requires>
