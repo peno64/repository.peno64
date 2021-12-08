@@ -1,7 +1,7 @@
 # Updating addons in this repository
 
 The root folder is the folder where the python script _repo_generator.py is located, subfolders - and repo exist.\
-There are two cases: \
+There are two cases:
 - An adddon is updated
 - An addon is added
 
@@ -26,4 +26,4 @@ If the version number of -/repository.peno64/addon.xml has changed, edit index.h
 ### Upload the changes to github
 git add . \
 git commit -m "comment" \
-git push -u origin master \
+git push -u origin master
