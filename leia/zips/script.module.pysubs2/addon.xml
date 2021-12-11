@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.pysubs2" name="pysubs2 module" version="0.1.0" provider-name="bkiziuk">
+    <requires>
+        <import addon="xbmc.python" version="2.7.0"/>
+    </requires>
+    <extension point="xbmc.python.module" library="resources" />
+    <extension point="xbmc.addon.metadata">
+        <summary>Provides pysubs2 library functionality for Kodi addons</summary>
+        <description>Provides pysubs2 library functionality for Kodi addons</description>
+        <disclaimer>May contain a bug</disclaimer>
+        <news>v0.1.0  (2018-01-21)
+- settings moved from subtitles plugin to this plugin</news>
+        <platform>all</platform>
+        <language></language>
+        <license>MIT</license>
+        <forum></forum>
+        <website></website>
+        <source>https://github.com/bkiziuk/script.module.pysubs2</source>
+        <email></email>
+        <broken></broken>
+        <assets>
+            <icon></icon>
+            <fanart></fanart>
+            <screenshot></screenshot>
+        </assets>
+    </extension>
+</addon>

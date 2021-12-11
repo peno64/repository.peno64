@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32005"> 
+      <setting id="OSbackground" type="bool" label="32006" default="true"/>
+      <setting id="OSfontsize" type="slider" label="32007" default="18" range="10,30" subsetting="true" enable="eq(-1,true)"/>
+    </category>  
+</settings>
