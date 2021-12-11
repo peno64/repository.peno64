@@ -82,7 +82,7 @@
     		<fanart>fanart.png</fanart>
         </assets>
     </extension>
-</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.5.0" provider-name="peno">
+</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.5.1" provider-name="peno">
   <requires>
   </requires>
   <extension point="xbmc.subtitle.module" library="service.py" />

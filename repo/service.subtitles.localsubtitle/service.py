@@ -25,7 +25,7 @@ __language__   = __addon__.getLocalizedString
 try:
     translatePath = xbmcvfs.translatePath
 except AttributeError:
-    translatePath = translatePath
+    translatePath = xbmc.translatePath
 
 __cwd__        = translatePath( __addon__.getAddonInfo('path') )
 if not p3:
