@@ -1,6 +1,9 @@
 OpenSubtitles.org by OpenSubtitles with dual subs KODI add-on
 =============================================================
 
+The possibility to use two subtitles at the same time was build in by moham96.
+See https://github.com/moham96/service.subtitles.opensubtitles_by_opensubtitles
+
 Changelog
 
 5.3.0
