@@ -1,16 +1,11 @@
-OpenSubtitles.org by OpenSubtitles KODI add-on
-==============================================
-
-How to install this addon in KODI:
-- Download https://github.com/moham96/script.module.pysubs2/releases/download/v0.1.0/script.module.pysubs2.zip
-- Download https://github.com/moham96/service.subtitles.opensubtitles_by_opensubtitles/releases/download/v5.2.14-alpha/service.subtitles.opensubtitles_by_opensubtitles.zip
-- Open KODI -> System -> Settings -> Add-ons -> Install from zip file
-- Navigate to the file you downloaded (install script.module.pysubs2.zip first)
+OpenSubtitles.org by OpenSubtitles with dual subs KODI add-on
+=============================================================
 
 Changelog
 5.3.0
 - Possibility to choose two subtitles. One will be shown at the bottom, the other on top
 - Works both with Python 2 (kodi 17, 18) and Python 3 (kodi 19)
+
 5.2.14
 - New feature: Users are able to check for subtitles when Kodi is not playing, by using the manual search or by standing on an item and opening the subtitles search dialog (By key or by an external addon) | @burekas
 - The external addon for the contextmenu can be downloaded from here: https://github.com/burekas7/context.subtitlesdialog.contextmenu
