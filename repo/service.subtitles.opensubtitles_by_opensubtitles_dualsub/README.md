@@ -2,6 +2,7 @@ OpenSubtitles.org by OpenSubtitles with dual subs KODI add-on
 =============================================================
 
 Changelog
+
 5.3.0
 - Possibility to choose two subtitles. One will be shown at the bottom, the other on top
 - Works both with Python 2 (kodi 17, 18) and Python 3 (kodi 19)
