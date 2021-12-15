@@ -81,3 +81,44 @@ msgstr ""
 msgctxt "#32019"
 msgid "[COLOR yellow]Download And Combine Subtitles[/COLOR]"
 msgstr ""
+
+msgctxt "#32020"
+msgid "Auto Shift"
+msgstr "Auto Shift"
+
+msgctxt "#32021"
+msgid "Time Difference Threshold (milliseconds)"
+msgstr "Time Difference Threshold (milliseconds)"
+
+msgctxt "#32022"
+msgid "Enabling Auto Shift will try to sync the second subtitle with the first\naccording to the Time Difference Threshold"
+msgstr "Enabling Auto Shift will try to sync the second subtitle with the first\naccording to the Time Difference Threshold"
+
+msgctxt "#32023"
+msgid "The depth of the text shadow, in pixels"
+msgstr "The depth of the text shadow, in pixels"
+
+msgctxt "#32024"
+msgid "The width of the text outline, in pixels"
+msgstr "The width of the text outline, in pixels"
+
+msgctxt "#32025"
+msgid "Swap Bottom - Top subtitles"
+msgstr "Swap Bottom - Top subtitles"
+
+msgctxt "#32026"
+msgid "[COLOR yellow]Download And Combine Subtitles Swapped[/COLOR]"
+msgstr ""
+
+msgctxt "#32027"
+msgid "Choose a subtitle"
+msgstr ""
+
+msgctxt "#32028"
+msgid "Please select maximum 2 subtitles"
+msgstr ""
+
+msgctxt "#32029"
+msgid "Credentials are not required with this version on the Opensubtitles addon"
+msgstr "Credentials are not required with this version on the Opensubtitles addon"
+

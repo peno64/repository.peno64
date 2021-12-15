@@ -114,7 +114,12 @@ def Search( item ):
           xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=listitem,isFolder=False)
     if(__addon__.getSetting('dualsub_enable') == 'true'):
       dialog = xbmcgui.Dialog()
-      ret = dialog.multiselect("Choose a subtitle", [i for i in listitems],useDetails=True)
+      while True:
+        ret = dialog.multiselect(__language__(32027), [i for i in listitems],useDetails=True)
+        if ret and len(ret) > 2:
+          dialog.ok('', __language__(32028))
+        else:
+          break
       if ret and len(ret) > 0:
         subs=[]
         for sub in ret:
@@ -126,6 +131,9 @@ def Search( item ):
         payload=quote(payload)
         listitem = xbmcgui.ListItem(label2=__language__(32019))
         url = "plugin://%s/?action=download&payload=%s"% (__scriptid__,payload)
+        xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=listitem,isFolder=False)
+        listitem = xbmcgui.ListItem(label2=__language__(32026))
+        url = "plugin://%s/?action=downloadswap&payload=%s"% (__scriptid__,payload)
         xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=listitem,isFolder=False)
 
 def Download(id,url,format,stack=False):
@@ -212,30 +220,31 @@ def charset_detect(filename):
 
 def merge(file):
     subs=[]
+    subs.append(pysubs2.SSAFile.from_string('', 'srt'))
+    if(__addon__.getSetting('dualsub_swap') == 'true'):
+      file.reverse()
     for sub in file:
       subs.append(pysubs2.load(sub, encoding=charset_detect(sub)))
     ass = os.path.join(__temp__, "%s.ass" %(str(uuid.uuid4())))
+
     top_style = pysubs2.SSAStyle()
-    bottom_style=subs[0].styles["Default"].copy()
-    top_style.alignment=8
-    top_style.fontsize= int(__addon__.getSetting('top_fontsize'))
+    bottom_style=top_style.copy()
+    top_style.alignment = 8
+    top_style.fontsize = int(__addon__.getSetting('top_fontsize'))
     if(__addon__.getSetting('top_bold') == 'true'):
       top_style.bold = 1
     top_style.fontname = unicode(__addon__.getSetting('top_font'))
     if (__addon__.getSetting('top_color') == 'Yellow'):
-      top_style.primarycolor=pysubs2.Color(255, 255, 0, 0)
+      top_style.primarycolor = pysubs2.Color(255, 255, 0, 0)
     elif (__addon__.getSetting('top_color') == 'White'):
-      top_style.primarycolor=pysubs2.Color(255, 255, 255, 0)
-      top_style.secondarycolor=pysubs2.Color(255,255,255,0)
+      top_style.primarycolor = pysubs2.Color(255, 255, 255, 0)
+      top_style.secondarycolor = pysubs2.Color(255,255,255,0)
     if (__addon__.getSetting('top_background') == 'true'):
-      top_style.backcolor=pysubs2.Color(0,0,0,128)
-      top_style.outlinecolor=pysubs2.Color(0,0,0,128)
-      top_style.shadow=0
-      top_style.outline=0
-      top_style.borderstyle=4
-    else:
-      top_style.shadow=0
-      top_style.outline=1
+      top_style.backcolor = pysubs2.Color(0,0,0,128)
+      top_style.outlinecolor = pysubs2.Color(0,0,0,128)
+      top_style.borderstyle = 4
+    top_style.shadow = int(__addon__.getSetting('top_shadow'))
+    top_style.outline = int(__addon__.getSetting('top_outline'))
 
     bottom_style.alignment = 2
     bottom_style.fontsize= int(__addon__.getSetting('bottom_fontsize'))
@@ -249,21 +258,72 @@ def merge(file):
     if (__addon__.getSetting('bottom_background') == 'true'):
       bottom_style.backcolor=pysubs2.Color(0,0,0,128)
       bottom_style.outlinecolor=pysubs2.Color(0,0,0,128)
-      bottom_style.shadow=0
-      bottom_style.outline=0
       bottom_style.borderstyle=4
-    else:
-      bottom_style.shadow=0
-      bottom_style.outline=1
+    bottom_style.shadow = int(__addon__.getSetting('bottom_shadow'))
+    bottom_style.outline = int(__addon__.getSetting('bottom_outline'))
 
     subs[0].styles['top-style'] = top_style
     subs[0].styles['bottom-style'] = bottom_style
-    for line in subs[0]:
-      line.style= u'bottom-style'
-    if len(subs) ==2:
-      for line in subs[1]:
-        line.style = u'top-style'
-        subs[0].append(line)
+
+    if __addon__.getSetting('autoShft') == 'true':
+      timeThresh = int(__addon__.getSetting('autoShftAmt'))
+    else:
+      timeThresh = -1
+    l1 = len(subs[1])
+    if len(subs) >= 3:
+      l2 = len(subs[2])
+    else:
+      l2 = 0
+    i = 0
+    j = 0
+    prevStart1 = -1
+    prevEnd1 = 999999
+    prevIndex2 = -1
+    while i < l1 or j < l2:
+      if i < l1:
+        line1 = subs[1][i]
+        line1.style = u'bottom-style'
+        subs[0].append(line1)
+
+      if timeThresh < 0:
+        j = i
+        if j < l2:
+          line2 = subs[2][j]
+          line2.style = u'top-style'
+          subs[0].append(line2)
+      else:
+        while j < l2:
+          line2 = subs[2][j]
+          if i < l1 and line2.start > line1.start + timeThresh:
+            break
+
+          line2.style = u'top-style'
+          if i < l1:
+            if abs(line2.start - line1.start) <= timeThresh:
+              if prevIndex2 < 0 or line1.start > subs[0][prevIndex2].end:
+                line2.start = line1.start
+              else:
+                line2.start = subs[0][prevIndex2].end + 10
+            if abs(line2.end - line1.end) <= timeThresh:
+              line2.end = line1.end
+          if prevIndex2 >= 0 and subs[0][prevIndex2].start == prevStart1:
+            if line2.start > prevEnd1:
+              subs[0][prevIndex2].end = prevEnd1
+            elif line2.start <= prevEnd1:
+              subs[0][prevIndex2].end = line2.start - 10
+          prevIndex2 = len(subs[0])
+          subs[0].append(line2)
+          j = j + 1
+
+        if i < l1:
+          prevStart1 = line1.start
+          prevEnd1 = line1.end
+        else:
+          prevStart1 = -1
+          prevEnd1 = 999999
+
+      i = i + 1
+
     subs[0].save(ass,format_='ass')
     return ass
 
@@ -334,12 +394,14 @@ if params['action'] == 'search' or params['action'] == 'manualsearch':
 
   Search(item)
 
-elif params['action'] == 'download':
+elif params['action'] == 'download' or params['action'] == 'downloadswap':
   if(__addon__.getSetting('dualsub_enable') == 'true'):
     payload=json.loads(unquote(params['payload']))
     subs=[]
     for sub in payload:
       subs.append(Download(sub["ID"], sub["link"],sub["format"])[0])
+    if params['action'] == 'downloadswap':
+      subs.reverse()
     finalfile = merge(subs)
     listitem = xbmcgui.ListItem(label=finalfile)
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=finalfile,listitem=listitem,isFolder=False)

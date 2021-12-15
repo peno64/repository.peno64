@@ -2,21 +2,30 @@
 <settings>
     <category label="32005" >
         <setting label="32017" type="bool" subsetting="true" id="dualsub_enable" default="false"/>
-    	<setting visible="eq(-1,true)" label="32006" type="lsep"/>
-    	<setting visible="eq(-2,true)" default="Arial" subsetting="true" label="32007" id="top_font" type="labelenum" values="Arial|Verdana"/>
-    	<setting visible="eq(-3,true)" default="17" subsetting="true" label="32008" type="slider" id="top_fontsize" range="12,1,30" option="int" />
-    	<setting visible="eq(-4,true)" default="true" subsetting="true" label="32009" id="top_bold" type="bool" />
-    	<setting visible="eq(-5,true)" default="32013" subsetting="true" label="32010"  id="top_color" type="labelenum" lvalues="32012|32013" />
-    	<setting visible="eq(-6,true)" default="false" subsetting="true" label="32011" id="top_background" type="bool" />
-    	<setting visible="eq(-7,true)" label="32016" type="lsep"/>
-    	<setting visible="eq(-8,true)" default="Arial" subsetting="true" label="32007" id="bottom_font" type="labelenum" values="Arial|Verdana"/>
-    	<setting visible="eq(-9,true)" default="17" subsetting="true" label="32008" type="slider" id="bottom_fontsize" range="12,1,30" option="int" />
-    	<setting visible="eq(-10,true)" default="true" subsetting="true" label="32009" id="bottom_bold" type="bool" />
-    	<setting visible="eq(-11,true)" default="32012" subsetting="true" label="32010" id="bottom_color" type="labelenum" lvalues="32012|32013" />
-    	<setting visible="eq(-12,true)" default="false" subsetting="true" label="32011" id="bottom_background" type="bool" />
+        <setting visible="eq(-1,true)" label="32025" type="bool" subsetting="true" id="dualsub_swap" default="false"/>
+	<setting visible="eq(-2,true)" id="autoShft" label="32020" type="bool" default="true"/>
+	<setting visible="eq(-3,true)" id="autoShftAmt" label="32021" type="number" default="500" subsetting="true" enable="eq(-1,true)"/>
+        <setting visible="eq(-4,true)" label="32022" type="text" enable="false"/>
+    	<setting visible="eq(-5,true)" label="32006" type="lsep"/>
+    	<setting visible="eq(-6,true)" default="Arial" subsetting="true" label="32007" id="top_font" type="labelenum" values="Arial|Verdana"/>
+    	<setting visible="eq(-7,true)" default="17" subsetting="true" label="32008" type="slider" id="top_fontsize" range="12,1,30" option="int" />
+    	<setting visible="eq(-8,true)" default="true" subsetting="true" label="32009" id="top_bold" type="bool" />
+    	<setting visible="eq(-9,true)" default="32013" subsetting="true" label="32010"  id="top_color" type="labelenum" lvalues="32012|32013" />
+    	<setting visible="eq(-10,true)" default="false" subsetting="true" label="32011" id="top_background" type="bool" />
+    	<setting visible="eq(-11,true)" default="0" subsetting="true" label="32023" type="slider" id="top_shadow" range="0,1,3" option="int" />
+    	<setting visible="eq(-12,true)" default="1" subsetting="true" label="32024" type="slider" id="top_outline" range="0,1,5" option="int" />
+    	<setting visible="eq(-13,true)" label="32016" type="lsep"/>
+    	<setting visible="eq(-14,true)" default="Arial" subsetting="true" label="32007" id="bottom_font" type="labelenum" values="Arial|Verdana"/>
+    	<setting visible="eq(-15,true)" default="17" subsetting="true" label="32008" type="slider" id="bottom_fontsize" range="12,1,30" option="int" />
+    	<setting visible="eq(-16,true)" default="true" subsetting="true" label="32009" id="bottom_bold" type="bool" />
+    	<setting visible="eq(-17,true)" default="32012" subsetting="true" label="32010" id="bottom_color" type="labelenum" lvalues="32012|32013" />
+    	<setting visible="eq(-18,true)" default="false" subsetting="true" label="32011" id="bottom_background" type="bool" />
+    	<setting visible="eq(-19,true)" default="0" subsetting="true" label="32023" type="slider" id="bottom_shadow" range="0,1,3" option="int" />
+    	<setting visible="eq(-20,true)" default="1" subsetting="true" label="32024" type="slider" id="bottom_outline" range="0,1,5" option="int" />
     </category>
     <category label="32004">
       <setting id="OSuser" type="text" label="32002" default=""/>
       <setting id="OSpass" type="text" option = "hidden" label="32003" default=""/>
+      <setting label="32029" type="text" enable="false"/>
     </category>
 </settings>
