@@ -114,7 +114,7 @@ class SSAFile(MutableSequence):
             >>> subs = SSAFile.from_string(text)
 
         """
-        fp = io.StringIO(string)
+        fp = io.StringIO(unicode(string))
         return cls.from_file(fp, format_, fps=fps, **kwargs)
 
     @classmethod

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="script.module.pysubs2" name="pysubs2 module" version="0.1.0" provider-name="bkiziuk">
+<addons><addon id="script.module.pysubs2" name="pysubs2 module" version="0.1.1" provider-name="bkiziuk">
     <requires>
         <import addon="xbmc.python" version="2.7.0" />
     </requires>
