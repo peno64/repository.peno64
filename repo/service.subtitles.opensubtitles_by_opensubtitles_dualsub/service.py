@@ -17,11 +17,11 @@ try:
 except:
   from lib import pysubs2
 
-if sys.version_info[0] == 3:
-    p3 = True
-    unicode = str
+if sys.version_info[0] == 2:
+    p2 = True
 else:
-    p3 = False
+    unicode = str
+    p2 = False
 
 __addon__ = xbmcaddon.Addon()
 __author__     = __addon__.getAddonInfo('author')
@@ -36,19 +36,19 @@ except AttributeError:
     translatePath = xbmc.translatePath
 
 __cwd__        = translatePath( __addon__.getAddonInfo('path') )
-if not p3:
+if p2:
     __cwd__ = __cwd__.decode("utf-8")
 
 __profile__    = translatePath( __addon__.getAddonInfo('profile') )
-if not p3:
+if p2:
     __profile__ = __profile__.decode("utf-8")
 
 __resource__   = translatePath( os.path.join( __cwd__, 'resources', 'lib' ) )
-if not p3:
+if p2:
     __resource__ = __resource__.decode("utf-8")
 
 __temp__       = translatePath( os.path.join( __profile__, 'temp', '') )
-if not p3:
+if p2:
     __temp__ = __temp__.decode("utf-8")
 
 if xbmcvfs.exists(__temp__):
@@ -90,17 +90,18 @@ def Search( item ):
           item['episode'] == item_data['SeriesEpisode']) or
           (item['season'] == "" and item['episode'] == "") ## for file search, season and episode == ""
          ):
-        if p3:
-          listitem = xbmcgui.ListItem(label          = item_data["LanguageName"],
-                                      label2         = item_data["SubFileName"]
-                                      )
-          listitem.setArt( { "icon": str(int(round(float(item_data["SubRating"])/2))), "thumb" : item_data["ISO639"] } )
-        else:
+        if p2:
           listitem = xbmcgui.ListItem(label          = item_data["LanguageName"],
                                       label2         = item_data["SubFileName"],
                                       iconImage      = str(int(round(float(item_data["SubRating"])/2))),
                                       thumbnailImage = item_data["ISO639"]
                                       )
+        else:
+          listitem = xbmcgui.ListItem(label          = item_data["LanguageName"],
+                                      label2         = item_data["SubFileName"]
+                                      )
+          listitem.setArt( { "icon": str(int(round(float(item_data["SubRating"])/2))), "thumb" : item_data["ISO639"] } )
+
         listitem.setProperty( "sync", ("false", "true")[str(item_data["MatchedBy"]) == "moviehash"] )
         listitem.setProperty( "hearing_imp", ("false", "true")[int(item_data["SubHearingImpaired"]) != 0] )
         url = "plugin://%s/?action=download&link=%s&ID=%s&filename=%s&format=%s" % (__scriptid__,

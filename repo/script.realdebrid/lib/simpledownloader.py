@@ -40,14 +40,14 @@ try:  # Python 3
     from urllib.parse import unquote_plus
     from urllib.request import urlopen
     from urllib.request import Request
-    p3 = True
+    p2 = False
 except ImportError:
     import cookielib
     from urllib2 import urlopen
     from urllib2 import Request
     from urllib import quote_plus
     from urllib import unquote_plus
-    p3 = False
+    p2 = True
 
 ADDON_ID='script.realdebrid'
 addon = xbmcaddon.Addon(id=ADDON_ID)

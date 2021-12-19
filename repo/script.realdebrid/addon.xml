@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.realdebrid" name="RealDebrid" version="0.6" provider-name="ptom, peno">
+<addon id="script.realdebrid" name="RealDebrid" version="0.7" provider-name="ptom, peno">
     <requires>
         <import addon="script.module.requests" version="2.3.0"/>
     </requires>

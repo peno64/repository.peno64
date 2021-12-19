@@ -13,11 +13,11 @@ try:
   import xmlrpc
   from xmlrpc import client
   from urllib.parse import unquote
-  p3 = True
+  p2 = False
 except:
   import xmlrpclib
   from urllib import unquote
-  p3 = False
+  p2 = True
 
 __addon__      = xbmcaddon.Addon()
 __version__    = __addon__.getAddonInfo('version') # Module version
@@ -27,10 +27,10 @@ BASE_URL_XMLRPC = u"http://api.opensubtitles.org/xml-rpc"
 
 class OSDBServer:
   def __init__( self, *args, **kwargs ):
-    if p3:
-      self.server = xmlrpc.client.ServerProxy( BASE_URL_XMLRPC, verbose=0 )
-    else:
+    if p2:
       self.server = xmlrpclib.Server( BASE_URL_XMLRPC, verbose=0 )
+    else:
+      self.server = xmlrpc.client.ServerProxy( BASE_URL_XMLRPC, verbose=0 )
 
     login = self.server.LogIn(__addon__.getSetting( "OSuser" ), __addon__.getSetting( "OSpass" ), "en", "%s_v%s" %(__scriptname__.replace(" ","_"),__version__))
     self.osdb_token  = login[ "token" ]
@@ -192,9 +192,11 @@ def addfilehash(name,hash,seek):
     return hash
 
 def normalizeString(str):
-  if p3:
-    return unicodedata.normalize('NFKD', str)
+  if p2:
+    return unicodedata.normalize(
+           'NFKD', unicode(unicode(str, 'utf-8'))
+           ).encode('ascii','ignore')
 
-  return unicodedata.normalize(
-         'NFKD', unicode(unicode(str, 'utf-8'))
-         ).encode('ascii','ignore')
+  return unicodedata.normalize('NFKD', str)
+
+

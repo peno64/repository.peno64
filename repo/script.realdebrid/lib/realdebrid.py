@@ -14,7 +14,7 @@ try:  # Python 3
     from urllib.request import build_opener
     from urllib.parse import urlencode
     from urllib.request import HTTPCookieProcessor
-    p3 = True
+    p2 = False
 except ImportError:
     import cookielib
     from urllib2 import urlopen
@@ -22,7 +22,7 @@ except ImportError:
     from urllib2 import build_opener
     from urllib import urlencode
     from urllib2 import HTTPCookieProcessor
-    p3 = False
+    p2 = True
 
 client_id="MN55HGIQEO2BE" #realdebrid clientid
 
@@ -480,10 +480,10 @@ def vpnInfo(parameters):
 
     vpnInfo = False
     for l in lines:
-        if p3:
-            line = bytes.decode(l)
-        else:
+        if p2:
             line = l
+        else:
+            line = bytes.decode(l)
 
         line = line.strip(' \t\n\r')
 
@@ -511,24 +511,24 @@ def vpnInfo(parameters):
     else:
       lines = line1.split('.')
       for line in lines:
-        if p3:
-            li = xbmcgui.ListItem(line.strip())
-        else:
+        if p2:
             li = xbmcgui.ListItem(line.strip(), iconImage='DefaultFolder.png')
+        else:
+            li = xbmcgui.ListItem(line.strip())
 
         xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url="", listitem=li, isFolder=False)
 
-      if p3:
-          li = xbmcgui.ListItem(line2)
-      else:
+      if p2:
           li = xbmcgui.ListItem(line2, iconImage='DefaultFolder.png')
+      else:
+          li = xbmcgui.ListItem(line2)
 
       xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url="", listitem=li, isFolder=False)
 
-      if p3:
-          li = xbmcgui.ListItem(line3)
-      else:
+      if p2:
           li = xbmcgui.ListItem(line3, iconImage='DefaultFolder.png')
+      else:
+          li = xbmcgui.ListItem(line3)
 
       xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url="", listitem=li, isFolder=False)
 

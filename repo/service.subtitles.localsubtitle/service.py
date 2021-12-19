@@ -1,19 +1,27 @@
 # -*- coding: utf-8 -*-
 
 import os
-import shutil
 import sys
-import urllib
 import xbmc
 import xbmcaddon
 import xbmcgui,xbmcplugin
 import xbmcvfs
-import uuid
+import shutil
 
-if sys.version_info[0] == 3:
-    p3 = True
+import uuid
+import json
+import chardet
+
+try:
+  import pysubs2
+except:
+  from lib import pysubs2
+
+if sys.version_info[0] == 2:
+    p2 = True
 else:
-    p3 = False
+    unicode = str
+    p2 = False
 
 __addon__ = xbmcaddon.Addon()
 __author__     = __addon__.getAddonInfo('author')
@@ -28,12 +36,24 @@ except AttributeError:
     translatePath = xbmc.translatePath
 
 __cwd__        = translatePath( __addon__.getAddonInfo('path') )
-if not p3:
+if p2:
     __cwd__ = __cwd__.decode("utf-8")
 
 __resource__   = translatePath( os.path.join( __cwd__, 'resources', 'lib' ) )
-if not p3:
+if p2:
     __resource__ = __resource__.decode("utf-8")
+
+__profile__    = translatePath( __addon__.getAddonInfo('profile') )
+if p2:
+    __profile__ = __profile__.decode("utf-8")
+
+__temp__       = translatePath( os.path.join( __profile__, 'temp', '') )
+if p2:
+    __temp__ = __temp__.decode("utf-8")
+
+if xbmcvfs.exists(__temp__):
+  shutil.rmtree(__temp__)
+xbmcvfs.mkdirs(__temp__)
 
 __msg_box__       = xbmcgui.Dialog()
 
@@ -42,11 +62,6 @@ __subtitlepath__  = translatePath("special://subtitles")
 if __subtitlepath__ == None:
   __subtitlepath__ = ""
 
-#__subtitlepath__ = ""
-
-#if __subtitlepath__ == None or __subtitlepath__ == '':
-#  __msg_box__.ok('LocalSubtitle', __language__(32008))
-
 __subtitle__      = ""
 if __subtitlepath__ != "":
   __subtitle__      = __subtitlepath__ + "subtitle.srt"
@@ -54,53 +69,24 @@ if __subtitlepath__ != "":
 
 sys.path.append (__resource__)
 
-
-def Search():
-  if __subtitle__ != "":
-    if xbmcvfs.exists(__subtitle__):
-      if p3:
-        listitem = xbmcgui.ListItem(label          = "",
-                                    label2         = __subtitle__
-                                    )
-      else:
-        listitem = xbmcgui.ListItem(label          = "",
-                                    label2         = __subtitle__,
-                                    iconImage      = "5",
-                                    thumbnailImage = ""
-                                    )
-
-      listitem.setProperty( "sync", "false" )
-      listitem.setProperty( "hearing_imp", "false" )
-
-      url = "plugin://%s/?action=download" % (__scriptid__)
-
-      xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=listitem,isFolder=False)
-
-
-  if p3:
-    listitem = xbmcgui.ListItem(label          = "",
-                                label2         = __language__(32010)
-                                )
-  else:
-    listitem = xbmcgui.ListItem(label          = "",
-                                label2         = __language__(32010),
-                                iconImage      = "0",
-                                thumbnailImage = ""
-                                )
+def AddItem(name, url):
+  listitem = xbmcgui.ListItem(label          = "",
+                              label2         = name
+                             )
 
   listitem.setProperty( "sync", "false" )
   listitem.setProperty( "hearing_imp", "false" )
 
-  url = "plugin://%s/?action=browse" % (__scriptid__)
-
   xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=listitem,isFolder=False)
 
 
-def Download():
-  subtitle_list = [ __subtitle__ ]
+def Search():
+  if __subtitle__ != "":
+    if xbmcvfs.exists(__subtitle__):
+      AddItem(__subtitle__, "plugin://%s/?action=download" % (__scriptid__))
 
-  if xbmcvfs.exists(subtitle_list[0]):
-    return subtitle_list
+  AddItem(__language__(33002), "plugin://%s/?action=browse" % (__scriptid__))
+  AddItem(__language__(33004), "plugin://%s/?action=browsedual" % (__scriptid__))
 
 def get_params(string=""):
   param=[]
@@ -125,25 +111,154 @@ def get_params(string=""):
 
 params = get_params()
 
+def charset_detect(filename):
+    with open(filename,'rb') as fi:
+        rawdata = fi.read()
+    encoding = chardet.detect(rawdata)['encoding']
+    if encoding.lower() == 'gb2312':  # Decoding may fail using GB2312
+        encoding = 'gbk'
+    return encoding
+
+def merge(file):
+    subs=[]
+    subs.append(pysubs2.SSAFile.from_string('', 'srt'))
+    for sub in file:
+      subs.append(pysubs2.load(sub, encoding=charset_detect(sub)))
+    ass = os.path.join(__temp__, "%s.ass" %(str(uuid.uuid4())))
+
+    top_style = pysubs2.SSAStyle()
+    bottom_style=top_style.copy()
+    top_style.alignment = 8
+    top_style.fontsize = int(__addon__.getSetting('top_fontsize'))
+    if(__addon__.getSetting('top_bold') == 'true'):
+      top_style.bold = 1
+    top_style.fontname = unicode(__addon__.getSetting('top_font'))
+    if (__addon__.getSetting('top_color') == 'Yellow'):
+      top_style.primarycolor = pysubs2.Color(255, 255, 0, 0)
+    elif (__addon__.getSetting('top_color') == 'White'):
+      top_style.primarycolor = pysubs2.Color(255, 255, 255, 0)
+      top_style.secondarycolor = pysubs2.Color(255,255,255,0)
+    if (__addon__.getSetting('top_background') == 'true'):
+      top_style.backcolor = pysubs2.Color(0,0,0,128)
+      top_style.outlinecolor = pysubs2.Color(0,0,0,128)
+      top_style.borderstyle = 4
+    top_style.shadow = int(__addon__.getSetting('top_shadow'))
+    top_style.outline = int(__addon__.getSetting('top_outline'))
+
+    bottom_style.alignment = 2
+    bottom_style.fontsize= int(__addon__.getSetting('bottom_fontsize'))
+    if (__addon__.getSetting('bottom_bold') =='true'):
+      bottom_style.bold = 1
+    bottom_style.fontname = unicode(__addon__.getSetting('bottom_font'))
+    if (__addon__.getSetting('bottom_color') == 'Yellow'):
+      bottom_style.primarycolor=pysubs2.Color(255, 255, 0, 0)
+    elif (__addon__.getSetting('bottom_color') == 'White'):
+      bottom_style.primarycolor=pysubs2.Color(255, 255, 255, 0)
+    if (__addon__.getSetting('bottom_background') == 'true'):
+      bottom_style.backcolor=pysubs2.Color(0,0,0,128)
+      bottom_style.outlinecolor=pysubs2.Color(0,0,0,128)
+      bottom_style.borderstyle=4
+    bottom_style.shadow = int(__addon__.getSetting('bottom_shadow'))
+    bottom_style.outline = int(__addon__.getSetting('bottom_outline'))
+
+    subs[0].styles['top-style'] = top_style
+    subs[0].styles['bottom-style'] = bottom_style
+
+    if __addon__.getSetting('autoShft') == 'true':
+      timeThresh = int(__addon__.getSetting('autoShftAmt'))
+    else:
+      timeThresh = -1
+    l1 = len(subs[1])
+    if len(subs) >= 3:
+      l2 = len(subs[2])
+    else:
+      l2 = 0
+    i = 0
+    j = 0
+    prevStart1 = -1
+    prevEnd1 = 999999
+    prevIndex2 = -1
+    while i < l1 or j < l2:
+      if i < l1:
+        line1 = subs[1][i]
+        line1.style = u'bottom-style'
+        subs[0].append(line1)
+
+      if timeThresh < 0:
+        j = i
+        if j < l2:
+          line2 = subs[2][j]
+          line2.style = u'top-style'
+          subs[0].append(line2)
+      else:
+        while j < l2:
+          line2 = subs[2][j]
+          if i < l1 and line2.start > line1.start + timeThresh:
+            break
+
+          line2.style = u'top-style'
+          if i < l1:
+            if abs(line2.start - line1.start) <= timeThresh:
+              if prevIndex2 < 0 or line1.start > subs[0][prevIndex2].end:
+                line2.start = line1.start
+              else:
+                line2.start = subs[0][prevIndex2].end + 10
+            if abs(line2.end - line1.end) <= timeThresh:
+              line2.end = line1.end
+          if prevIndex2 >= 0 and subs[0][prevIndex2].start == prevStart1:
+            if line2.start > prevEnd1:
+              subs[0][prevIndex2].end = prevEnd1
+            elif line2.start <= prevEnd1:
+              subs[0][prevIndex2].end = line2.start - 10
+          prevIndex2 = len(subs[0])
+          subs[0].append(line2)
+          j = j + 1
+
+        if i < l1:
+          prevStart1 = line1.start
+          prevEnd1 = line1.end
+        else:
+          prevStart1 = -1
+          prevEnd1 = 999999
+
+      i = i + 1
+
+    subs[0].save(ass,format_='ass')
+    return ass
+
+def Download(filename):
+  listitem = xbmcgui.ListItem(label=filename)
+  xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=filename,listitem=listitem,isFolder=False)
 
 if params['action'] == 'manualsearch':
-  __msg_box__.ok('LocalSubtitle', __language__(32009))
+  __msg_box__.ok('LocalSubtitle', __language__(33001))
   Search()
 
 elif params['action'] == 'search':
   Search()
 
 elif params['action'] == 'download':
-  subs = Download()
-  for sub in subs:
-    listitem = xbmcgui.ListItem(label=sub)
-    xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=sub,listitem=listitem,isFolder=False)
+  if xbmcvfs.exists(__subtitle__):
+    Download(__subtitle__)
 
 elif params['action'] == 'browse':
-  subtitlefile = xbmcgui.Dialog().browse(1, __language__(32011), "video", ".srt|.sub|.ssa|.ass|.idx|.smi|.aqt|.scc|.jss|.ogm|.pjs|.rt|.smi", False, False, __subtitlepath__, False)
+  subtitlefile = xbmcgui.Dialog().browse(1, __language__(33003), "video", ".srt|.sub|.ssa|.ass|.idx|.smi|.aqt|.scc|.jss|.ogm|.pjs|.rt|.smi", False, False, __subtitlepath__, False)
   if subtitlefile != __subtitlepath__:
-    listitem = xbmcgui.ListItem(label=subtitlefile)
-    xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=subtitlefile,listitem=listitem,isFolder=False)
+    Download(subtitlefile)
 
+elif params['action'] == 'browsedual':
+  subtitlefile1 = xbmcgui.Dialog().browse(1, __language__(33005), "video", ".srt", False, False, __subtitlepath__, False)
+  if subtitlefile1 != __subtitlepath__:
+    subs=[]
+    subs.append(subtitlefile1)
+
+    subtitlefile2 = xbmcgui.Dialog().browse(1, __language__(33006), "video", ".srt", False, False, __subtitlepath__, False)
+    if subtitlefile2 == __subtitlepath__ or subtitlefile2 == None:
+      subtitlefile2 = ""
+    else:
+      subs.append(subtitlefile2)
+
+    finalfile = merge(subs)
+    Download(finalfile)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

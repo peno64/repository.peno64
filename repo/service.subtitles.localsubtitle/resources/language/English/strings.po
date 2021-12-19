@@ -14,46 +14,91 @@ msgstr ""
 
 #English
 
-msgctxt "#32001"
-msgid "Error searching for subtitles"
-msgstr ""
-
-msgctxt "#32002"
-msgid "Username"
-msgstr ""
-
-msgctxt "#32003"
-msgid "Password"
-msgstr ""
-
-msgctxt "#32004"
-msgid "Login Details"
-msgstr ""
-
-msgctxt "#32005"
-msgid "Advanced Options"
-msgstr ""
-
-msgctxt "#32006"
-msgid "Enable search order"
-msgstr ""
-
-msgctxt "#32007"
-msgid "Language to appear first on search"
-msgstr ""
-
-msgctxt "#32008"
-msgid "No User defined custom subtitle path. Set it in Video Settings."
-msgstr ""
-
-msgctxt "#32009"
+msgctxt "#33001"
 msgid "Manual search not supported"
 msgstr ""
 
+msgctxt "#33002"
+msgid "Browse Single Subtitle..."
+msgstr ""
+
+msgctxt "#33003"
+msgid "Choose Subtitle File"
+msgstr ""
+
+msgctxt "#33004"
+msgid "Browse Dual Subtitles..."
+msgstr ""
+
+msgctxt "#33005"
+msgid "Choose Bottom Subtitle File"
+msgstr ""
+
+msgctxt "#33006"
+msgid "Choose Top Subtitle File"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Dual Subtitles Styles"
+msgstr ""
+
+msgctxt "#32006"
+msgid "Top Subtitle"
+msgstr ""
+
+msgctxt "#32007"
+msgid "Font"
+msgstr ""
+
+msgctxt "#32008"
+msgid "Font Size"
+msgstr ""
+
+msgctxt "#32009"
+msgid "Font Bold"
+msgstr ""
+
 msgctxt "#32010"
-msgid "Browse..."
+msgid "Color"
 msgstr ""
 
 msgctxt "#32011"
-msgid "Choose subtitle file"
+msgid "Black Translusent Background"
+msgstr ""
+
+msgctxt "#32012"
+msgid "White"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Yellow"
+msgstr ""
+
+msgctxt "#32016"
+msgid "Bottom Subtitle"
+msgstr ""
+
+msgctxt "#32020"
+msgid "Auto Shift"
+msgstr "Auto Shift"
+
+msgctxt "#32021"
+msgid "Time Difference Threshold (milliseconds)"
+msgstr "Time Difference Threshold (milliseconds)"
+
+msgctxt "#32022"
+msgid "Enabling Auto Shift will try to sync the second subtitle with the first\naccording to the Time Difference Threshold"
+msgstr "Enabling Auto Shift will try to sync the second subtitle with the first\naccording to the Time Difference Threshold"
+
+msgctxt "#32023"
+msgid "The depth of the text shadow, in pixels"
+msgstr "The depth of the text shadow, in pixels"
+
+msgctxt "#32024"
+msgid "The width of the text outline, in pixels"
+msgstr "The width of the text outline, in pixels"
+msgctxt "#32005"
+
+msgctxt "#32025"
+msgid "These options only apply if Browse Dual Subtitles is chosen.\nNot for a single subtitle in which case standard Kodi settings are used."
 msgstr ""

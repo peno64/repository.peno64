@@ -27,7 +27,7 @@
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
-</addon><addon id="script.RealDebrid.vpn" name="RealDebrid VPN info" version="1.3.0" provider-name="peno">
+</addon><addon id="script.RealDebrid.vpn" name="RealDebrid VPN info" version="1.3.1" provider-name="peno">
 	<requires>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="addon.py">
@@ -44,7 +44,7 @@
     			<fanart>fanart.png</fanart>
   		</assets>
         </extension>
-</addon><addon id="script.ezmaintenanceplus" name="EZ Maintenance+" version="2021.11.03.0" provider-name="aenema, peno">
+</addon><addon id="script.ezmaintenanceplus" name="EZ Maintenance+" version="2021.12.19.0" provider-name="aenema, peno">
   <requires>
     <import addon="script.module.requests" version="1.0.0" />
   </requires>
@@ -65,7 +65,7 @@
 	    <fanart>fanart.png</fanart>
     </assets>
   </extension>
-</addon><addon id="script.realdebrid" name="RealDebrid" version="0.6" provider-name="ptom, peno">
+</addon><addon id="script.realdebrid" name="RealDebrid" version="0.7" provider-name="ptom, peno">
     <requires>
         <import addon="script.module.requests" version="2.3.0" />
     </requires>
@@ -92,19 +92,21 @@
     		<fanart>fanart.png</fanart>
         </assets>
     </extension>
-</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.5.1" provider-name="peno">
+</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.6.0" provider-name="peno">
   <requires>
+      <import addon="script.module.pysubs2" version="0.1.0" />
+      <import addon="script.module.chardet" />
   </requires>
   <extension point="xbmc.subtitle.module" library="service.py" />
   <extension point="xbmc.addon.metadata">
     <summary lang="en">LocalSubtitle</summary>
-    <description lang="en">Use subtitle from local store</description>
+    <description lang="en">Use subtitle from local store and allow two subtitles (bottom / top) simultaneously</description>
     <disclaimer lang="en" />
     <platform>all</platform>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <source />
   </extension>
-</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.3.1" provider-name="peno64, moham96, amet, opensubtitles">
+</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.3.2" provider-name="peno64, moham96, amet, opensubtitles">
   <requires>
     <import addon="script.module.pysubs2" version="0.1.0" />
     <import addon="script.module.chardet" />

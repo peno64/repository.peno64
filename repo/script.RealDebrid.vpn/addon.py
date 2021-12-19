@@ -7,22 +7,22 @@ import sys
 try:  # Python 3
     import urllib.parse
     import urllib.request
-    p3 = True
+    p2 = False
 except ImportError:
     import urllib2
-    p3 = False
+    p2 = True
 
 addon       = xbmcaddon.Addon()
 addonname   = addon.getAddonInfo('name')
 
 url = "https://real-debrid.com/vpn"
 
-if p3:
-    req = urllib.request.Request(url)
-    response = urllib.request.urlopen(req)
-else:
+if p2:
     req = urllib2.Request(url)
     response = urllib2.urlopen(req)
+else:
+    req = urllib.request.Request(url)
+    response = urllib.request.urlopen(req)
 
 lines = response.readlines()
 
@@ -32,10 +32,10 @@ line3 = ""
 
 vpnInfo = False
 for l in lines:
-    if p3:
-        line = bytes.decode(l)
-    else:
+    if p2:
         line = l
+    else:
+        line = bytes.decode(l)
 
     line = line.strip(' \t\n\r')
 
@@ -63,24 +63,24 @@ if False:
 else:
   lines = line1.split('.')
   for line in lines:
-    if p3:
-        li = xbmcgui.ListItem(line.strip())
-    else:
+    if p2:
         li = xbmcgui.ListItem(line.strip(), iconImage='DefaultFolder.png')
+    else:
+        li = xbmcgui.ListItem(line.strip())
 
     xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url="", listitem=li, isFolder=False)
 
-  if p3:
-      li = xbmcgui.ListItem(line2)
-  else:
+  if p2:
       li = xbmcgui.ListItem(line2, iconImage='DefaultFolder.png')
+  else:
+      li = xbmcgui.ListItem(line2)
 
   xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url="", listitem=li, isFolder=False)
 
-  if p3:
-      li = xbmcgui.ListItem(line3)
-  else:
+  if p2:
       li = xbmcgui.ListItem(line3, iconImage='DefaultFolder.png')
+  else:
+      li = xbmcgui.ListItem(line3)
 
   xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url="", listitem=li, isFolder=False)
 

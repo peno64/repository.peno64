@@ -10,7 +10,7 @@ try:  # Python 3
     from urllib.request import urlopen
     from urllib.request import Request
     from urllib.parse import urlencode
-    p3 = True
+    p2 = False
 except ImportError:
     import cookielib
     from urllib2 import urlopen
@@ -19,7 +19,7 @@ except ImportError:
     from urllib import quote_plus
     from urllib2 import Request
     from urllib import urlencode
-    p3 = False
+    p2 = True
 
 sysarg=str(sys.argv[1])
 
@@ -51,7 +51,7 @@ def parseParameters(inputString=sys.argv[2]):
                     pair = nameValuePair.split('=')
                     key = pair[0]
                     value = unquote(unquote_plus(pair[1]))
-                    if not p3:
+                    if p2:
                         value = value.decode('utf-8')
                     parameters[key] = value
             except:
@@ -170,12 +170,12 @@ def searchDialog(searchText="Please enter search text") :
     return False
 
 def playMedia(title, thumbnail, link, mediaType='Video', library=True, title2="", force=False) :
-    if p3:
+    if p2:
+        li = xbmcgui.ListItem(label=title2, iconImage=thumbnail, thumbnailImage=thumbnail, path=link)
+    else:
         li = xbmcgui.ListItem(label=title2, path=link)
         li.setArt({'icon':thumbnail})
         li.setArt({'thumbnailImage': thumbnail})
-    else:
-        li = xbmcgui.ListItem(label=title2, iconImage=thumbnail, thumbnailImage=thumbnail, path=link)
     li.setInfo( "video", { "Title" : title } )
 
     if not force:
@@ -188,21 +188,21 @@ def addMenuItems(details):
     for detail in details:
         try:
             u=sys.argv[0]+"?url="+detail['url']+"&mode="+str(detail['mode'])+"&name="+quote_plus(detail['title'].encode("utf-8"))+"&icon="+detail['icon']
-            if p3:
+            if p2:
+                liz=xbmcgui.ListItem(detail['title'].encode("utf-8"), iconImage=detail['icon'], thumbnailImage=detail['icon'])
+            else:
                 liz=xbmcgui.ListItem(detail['title'].encode("utf-8"))
                 liz.setArt({'icon':detail['icon']})
                 liz.setArt({'thumbnailImage': detail['icon']})
-            else:
-                liz=xbmcgui.ListItem(detail['title'].encode("utf-8"), iconImage=detail['icon'], thumbnailImage=detail['icon'])
             liz.setInfo(type=detail['type'], infoLabels={ "Title": detail['title'].encode("utf-8"),"Plot": detail['plot']} )
         except:
             u=sys.argv[0]+"?url="+detail['url']+"&mode="+str(detail['mode'])+"&name="+quote_plus(detail['title'].decode("utf-8"))+"&icon="+detail['icon']
-            if p3:
+            if p2:
+                liz=xbmcgui.ListItem(detail['title'].encode("utf-8"), iconImage=detail['icon'], thumbnailImage=detail['icon'])
+            else:
                 liz=xbmcgui.ListItem(detail['title'].encode("utf-8"))
                 liz.setArt({'icon':detail['icon']})
                 liz.setArt({'thumbnailImage': detail['icon']})
-            else:
-                liz=xbmcgui.ListItem(detail['title'].encode("utf-8"), iconImage=detail['icon'], thumbnailImage=detail['icon'])
             liz.setInfo(type=detail['type'], infoLabels={ "Title": detail['title'].decode("utf-8"),"Plot": detail['plot']} )
 
         try:
