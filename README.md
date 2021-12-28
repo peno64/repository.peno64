@@ -3,7 +3,7 @@
 After making a local clone with the command \
 git clone url \
 Also the submodules must be cloned. This must be done with the command: \
-git submodule update --init --recursive \
+git submodule update --init --recursive
 
 # Updating addons in this repository
 
