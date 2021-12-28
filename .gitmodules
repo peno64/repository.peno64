@@ -1,3 +1,7 @@
 [submodule "repo/service.subtitles.localsubtitle"]
 	path = repo/service.subtitles.localsubtitle
 	url = https://github.com/peno64/service.subtitles.localsubtitle.git
+[submodule "leia/script.module.pysubs2"]
+	path = leia/script.module.pysubs2
+	url = https://github.com/peno64/script.module.pysubs2.git
+	branch = leia
