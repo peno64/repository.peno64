@@ -1,3 +1,10 @@
+# Cloning this repository
+
+After making a local clone with the command
+git clone url
+Also the submodules must be cloned. This must be done with the command:
+git submodule update --init --recursive
+
 # Updating addons in this repository
 
 The root folder is the folder where the python script _repo_generator.py is located and subfolder repo exists. \
