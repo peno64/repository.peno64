@@ -5,3 +5,7 @@
 	path = leia/script.module.pysubs2
 	url = https://github.com/peno64/script.module.pysubs2.git
 	branch = leia
+[submodule "matrix/script.module.pysubs2"]
+	path = matrix/script.module.pysubs2
+	url = https://github.com/peno64/script.module.pysubs2.git
+	branch = matrix
