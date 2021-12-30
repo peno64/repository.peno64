@@ -12,3 +12,6 @@
 [submodule "repo/script.RealDebrid.vpn"]
 	path = repo/script.RealDebrid.vpn
 	url = https://github.com/peno64/script.RealDebrid.vpn.git
+[submodule "repo/script.ezmaintenanceplus"]
+	path = repo/script.ezmaintenanceplus
+	url = https://github.com/peno64/script.ezmaintenanceplus.git
