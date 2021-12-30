@@ -15,3 +15,6 @@
 [submodule "repo/script.ezmaintenanceplus"]
 	path = repo/script.ezmaintenanceplus
 	url = https://github.com/peno64/script.ezmaintenanceplus.git
+[submodule "repo/script.realdebrid"]
+	path = repo/script.realdebrid
+	url = https://github.com/peno64/script.realdebrid.git
