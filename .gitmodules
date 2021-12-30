@@ -9,3 +9,6 @@
 	path = matrix/script.module.pysubs2
 	url = https://github.com/peno64/script.module.pysubs2.git
 	branch = matrix
+[submodule "repo/script.RealDebrid.vpn"]
+	path = repo/script.RealDebrid.vpn
+	url = https://github.com/peno64/script.RealDebrid.vpn.git
