@@ -18,3 +18,6 @@
 [submodule "repo/script.realdebrid"]
 	path = repo/script.realdebrid
 	url = https://github.com/peno64/script.realdebrid.git
+[submodule "repo/service.subtitles.opensubtitles_by_opensubtitles_dualsub"]
+	path = repo/service.subtitles.opensubtitles_by_opensubtitles_dualsub
+	url = https://github.com/peno64/service.subtitles.opensubtitles_by_opensubtitles_dualsub.git
