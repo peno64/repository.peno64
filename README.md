@@ -32,9 +32,13 @@ Edit in the root file index.html and change the version numbers here also. Note 
 Remove folder zips in folders repo. \
 Run python script _repo_generator.py \
 Remove file repository.peno64-x.y.zip in the root folder. \
-Copy zip file repo/zips/repository.peno64/repository.peno64-x.y.zip to the root folder.
+Copy zip file repo/zips/repository.peno64/repository.peno64-x.y.zip to the root folder. \
+This is also done by the batch file gen.bat
 
 ### Upload the changes to github
 git add . \
 git commit -m "comment" \
-git push -u origin master
+git push -u origin master \
+
+This is also done by the batch file upload.bat
+
