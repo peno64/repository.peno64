@@ -14,11 +14,15 @@ There are two cases:
 
 ### An addon is updated
 
-The addon sources are in folder repo. Make the needed changes to the addon and don't forget to increment the version number in addon.xml
+The addon sources are in folder repo. However that are in fact submodules. Make the needed changes to the addon in its own repository and don't forget to increment the version number in addon.xml \
+When that is done and put in github, update the addon in folder repo via the git command \
+git pull
 
 ### An addon is added
 
-The addon sources are in folder repo. Put the new addon there. \
+The addon sources are in folder repo. However that are in fact submodules. First create a new repository for the addon and when that it done, create it as submodule in folder repo with the command: \
+git submodule add <url> \
+With url the url of the new addon. \
 Since a new addon is added to the repo, the repo must also update. \
 To force that, goto folder repo/repository.peno64. Edit addon.xml and increase the version number. \
 Edit in the root file index.html and change the version numbers here also. Note that this must be done two times.
