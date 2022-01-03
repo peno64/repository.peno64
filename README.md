@@ -21,7 +21,7 @@ git pull
 ### An addon is added
 
 The addon sources are in folder repo. However that are in fact submodules. First create a new repository for the addon and when that it done, create it as submodule in folder repo with the command: \
-git submodule add <url> \
+git submodule add &lt;url&gt; \
 With url the url of the new addon. \
 Since a new addon is added to the repo, the repo must also update. \
 To force that, goto folder repo/repository.peno64. Edit addon.xml and increase the version number. \
