@@ -92,7 +92,7 @@
     		<fanart>fanart.png</fanart>
         </assets>
     </extension>
-</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.7.1" provider-name="peno">
+</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.8.0" provider-name="peno">
   <requires>
       <import addon="script.module.pysubs2" version="0.1.0" />
       <import addon="script.module.chardet" />
@@ -106,7 +106,7 @@
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <source />
   </extension>
-</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.3.2" provider-name="peno64, moham96, amet, opensubtitles">
+</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.4.0" provider-name="peno64, moham96, amet, opensubtitles">
   <requires>
     <import addon="script.module.pysubs2" version="0.1.0" />
     <import addon="script.module.chardet" />
