@@ -17,6 +17,8 @@ There are two cases:
 The addon sources are in folder repo. However that are in fact submodules. Make the needed changes to the addon in its own repository and don't forget to increment the version number in addon.xml \
 When that is done and put in github, update the addon in folder repo via the git command \
 git pull \
+Possibly a message is given that no branch wasn't chosen yet. In that case give first the git command\
+git checkout master
 Go in folder repo into the folder of the addon before executing above git command.
 
 ### An addon is added
