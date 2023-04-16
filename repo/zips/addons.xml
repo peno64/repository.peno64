@@ -119,7 +119,7 @@
     		<fanart>fanart.png</fanart>
         </assets>
     </extension>
-</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.10.2" provider-name="peno">
+</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.10.3" provider-name="peno">
   <requires>
       <import addon="script.module.pysubs2" version="0.1.0" />
       <import addon="script.module.chardet" />
