@@ -119,7 +119,7 @@
     		<fanart>fanart.png</fanart>
         </assets>
     </extension>
-</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.11.0" provider-name="peno">
+</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.12.0" provider-name="peno">
   <requires>
       <import addon="script.module.pysubs2" version="0.1.0" />
       <import addon="script.module.chardet" />
@@ -158,7 +158,7 @@ As extra several extra feastures are added in this case:
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <source />
   </extension>
-</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.4.0" provider-name="peno64, moham96, amet, opensubtitles">
+</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.5.0" provider-name="peno64, moham96, amet, opensubtitles">
   <requires>
     <import addon="script.module.pysubs2" version="0.1.0" />
     <import addon="script.module.chardet" />
@@ -166,7 +166,7 @@ As extra several extra feastures are added in this case:
   <extension point="xbmc.subtitle.module" library="service.py" />
   <extension point="xbmc.addon.metadata">
     <summary>OpenSubtitles by OpenSubtitles.org with dual subs</summary>
-    <description lang="en">Anonymously search and download subtitles for movies and TV-Series from OpenSubtitles.org without log-in. Possibility to choose 2 subtitles which will be shown simultaneously at the bottom and top. Search in 75 languages, 4.000.000+ subtitles, daily updates. </description>
+    <description lang="en">Anonymously search and download subtitles for movies and TV-Series from OpenSubtitles.org without log-in. Possibility to choose 2 subtitles which will be shown simultaneously. Search in 75 languages, 4.000.000+ subtitles, daily updates. </description>
 	<description lang="at">Pelis and Subtítulos TV en munches llingües, milenta de subtítulos traducíos y xubíos caldía. Descarga llibre dende la fonte, sofitu API, millones d'usuarios.</description>
 	<description lang="br">Istitloù Filmoù ha TV e meur a yezh, miliadoù a istitloù troet hag uskarget bemdez. Pellgargadenn digoust diouzh ar vammenn, skoazell an API, millionoù a implijerien.</description>
 	<description lang="ca">Subtítols de films i televisió en múltiples idiomes, milers de subtítols traduïts carregats diàriament. Descàrrega gratuïta des de la font, suport de l'API, amb milions d'usuaris.</description>
