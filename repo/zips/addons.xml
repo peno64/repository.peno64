@@ -158,7 +158,7 @@ As extra several extra feastures are added in this case:
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <source />
   </extension>
-</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.5.0" provider-name="peno64, moham96, amet, opensubtitles">
+</addon><addon id="service.subtitles.opensubtitles_by_opensubtitles_dualsub" name="OpenSubtitles.org by OpenSubtitles with dual subs" version="5.5.1" provider-name="peno64, moham96, amet, opensubtitles">
   <requires>
     <import addon="script.module.pysubs2" version="0.1.0" />
     <import addon="script.module.chardet" />
