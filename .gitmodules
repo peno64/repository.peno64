@@ -21,3 +21,6 @@
 [submodule "repo/service.subtitles.opensubtitles_by_opensubtitles_dualsub"]
 	path = repo/service.subtitles.opensubtitles_by_opensubtitles_dualsub
 	url = https://github.com/peno64/service.subtitles.opensubtitles_by_opensubtitles_dualsub.git
+[submodule "repo/script.IPTVManager.Fix"]
+	path = repo/script.IPTVManager.Fix
+	url = https://github.com/peno64/script.IPTVManager.Fix.git

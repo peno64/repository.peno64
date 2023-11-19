@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<addons><addon id="repository.peno64" name="peno64 repository" version="1.3" provider-name="peno64">
+<addons><addon id="repository.peno64" name="peno64 repository" version="1.4" provider-name="peno64">
     <extension point="xbmc.addon.repository" name="peno64 repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/peno64/repository.peno64/master/repo/zips/addons.xml</info>
@@ -27,6 +27,24 @@
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
+</addon><addon id="script.IPTVManager.Fix" name="Fix IPTV Manager configuration" version="1.0.0" provider-name="peno">
+	<requires>
+                <import addon="xbmc.python" version="3.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Fix IPTV Manager configuration</summary>
+		<description lang="en">This addon makes it possible to copy the generated settings from IPTV Manager to the settings from IPTV Simple Client</description>
+		<license>GNU General Public License, v2</license>
+		<language />
+  		<assets>
+    			<icon>icon.png</icon>
+    			<fanart>fanart.png</fanart>
+  		</assets>
+        </extension>
 </addon><addon id="script.RealDebrid.vpn" name="RealDebrid VPN info" version="1.3.1" provider-name="peno">
 	<requires>
 	</requires>

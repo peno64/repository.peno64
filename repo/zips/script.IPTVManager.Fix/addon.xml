@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.IPTVManager.Fix" name="Fix IPTV Manager configuration" version="1.0.0" provider-name="peno">
+	<requires>
+                <import addon="xbmc.python" version="3.0.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Fix IPTV Manager configuration</summary>
+		<description lang="en">This addon makes it possible to copy the generated settings from IPTV Manager to the settings from IPTV Simple Client</description>
+		<license>GNU General Public License, v2</license>
+		<language></language>
+  		<assets>
+    			<icon>icon.png</icon>
+    			<fanart>fanart.png</fanart>
+  		</assets>
+        </extension>
+</addon>
