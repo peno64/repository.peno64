@@ -137,7 +137,7 @@
     		<fanart>fanart.png</fanart>
         </assets>
     </extension>
-</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.12.2" provider-name="peno">
+</addon><addon id="service.subtitles.localsubtitle" name="LocalSubtitle" version="1.12.3" provider-name="peno">
   <requires>
       <import addon="script.module.pysubs2" version="0.1.0" />
       <import addon="script.module.chardet" />
@@ -173,7 +173,8 @@ As extra several extra feastures are added in this case:
 - Font, character set, color, ... selection: This overrules the kodi settings</description>
     <disclaimer lang="en" />
 	<news>
-Improved add-on by OpenSubtitles.org
+v1.12.3 (2024-03-24)
+- If the subtitle is located on a special location like samba then the addon could not load the subtitle file
 v1.12.2 (2023-12-02)
 - Some default settings were not applied if not changed first
 v1.12.1 (2021-12-15)
