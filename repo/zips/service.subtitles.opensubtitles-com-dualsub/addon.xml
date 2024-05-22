@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="service.subtitles.opensubtitles-com-dualsub"
        name="OpenSubtitles.com with dual subs"
-       version="2.0.1"
+       version="2.0.2"
        provider-name="peno64, amet, opensubtitles, juokelis, opensubtitlesdev">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0"/>
@@ -54,11 +54,24 @@
 		<description lang="zh_CN">多语种的电影及剧集字幕，每日更新千余条翻译好的字幕。免费下载，提供API接口，已拥有上百万的用户。</description>
 		<disclaimer lang="en_GB">Users need to provide OpenSubtitles.com username and password in add-on configuration. This is our new extension, old opensubtitles.org will not work on this, but the account can be easily imported on opensubtitles.com.</disclaimer>
 		<news>
+
+v2.0.2 (2024-05-22)
+ - Implemented changes from v1.0.3 and v1.0.4
+
 v2.0.1 (2024-04-07)
 - Add possibility to choose the Kodi selected subtitle font
 
 v2.0.0 (2023-11-29)
 - Add dual subtitle support
+
+v1.0.4 (2024-01-15)
+- Sanitize language query
+- Improved sorting
+- Improved error messages
+- Improved usage of moviehash
+
+v1.0.3 (2023-12-18)
+- Fixed issue with file path
 
 v1.0.2 (2023-08-28)
 - Update user agent header
