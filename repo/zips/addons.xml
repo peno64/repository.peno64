@@ -62,7 +62,7 @@
     			<fanart>fanart.png</fanart>
   		</assets>
         </extension>
-</addon><addon id="script.ezmaintenanceplus" name="EZ Maintenance+" version="2023.01.09.0" provider-name="aenema, peno">
+</addon><addon id="script.ezmaintenanceplus" name="EZ Maintenance+" version="2026.04.05.0" provider-name="aenema, peno">
   <requires>
     <import addon="script.module.requests" version="1.0.0" />
   </requires>
@@ -83,6 +83,8 @@
 	    <fanart>fanart.png</fanart>
     </assets>
     <news>
+2026.04.05.0
+ - Updated for Kodi 22
 2023.01.09.0
  - Added AutoClean Cache functionality every x days at a given hour.
  - Backup always replaced the home folder reference in xml files with special://home
