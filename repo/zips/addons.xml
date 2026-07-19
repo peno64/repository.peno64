@@ -193,7 +193,7 @@ v1.12.1 (2021-12-15)
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <source>https://github.com/peno64/service.subtitles.localsubtitle</source>
   </extension>
-</addon><addon id="service.subtitles.opensubtitles-com-dualsub" name="OpenSubtitles.com with dual subs" version="2.0.3" provider-name="peno64, amet, opensubtitles, juokelis, opensubtitlesdev">
+</addon><addon id="service.subtitles.opensubtitles-com-dualsub" name="OpenSubtitles.com with dual subs" version="2.0.4" provider-name="peno64, amet, opensubtitles, juokelis, opensubtitlesdev">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" version="2.25.1+matrix.1" />
